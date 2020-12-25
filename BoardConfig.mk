@@ -106,12 +106,48 @@ TW_INCLUDE_CRYPTO := true
 BOARD_USES_METADATA_PARTITION := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 
-# TWRP Configuration
+# Twrp Device Specific flags
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_MAX_BRIGHTNESS := 1500
+TW_DEFAULT_BRIGHTNESS := 500
+TW_EXTRA_LANGUAGES := true
+TW_INCLUDE_NTFS_3G := true
+AB_OTA_UPDATER := true (A/B Device)
+TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_THEME := portrait_hdpi
+TARGET_RECOVERY_DEVICE_MODULES += \
+    android.hardware.boot@1.0-service \
+    android.hidl.base@1.0 \
+    bootctrl.$(TARGET_BOARD_PLATFORM) \
+    libicuuc \
+    libion \
+    libprocinfo \
+    libxml2
+TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libprocinfo.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.boot@1.0-service
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+
+# Extra
+TW_HAPTICS_TSPDRV := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+#USE_RECOVERY_INSTALLER := true
+#RECOVERY_INSTALLER_PATH := bootable/recovery/installer
+TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_REPACKTOOLS := true
+TW_HAS_EDL_MODE := true
 
 # Log Flags(Debug Purposes)
 TWRP_INCLUDE_LOGCAT := true
