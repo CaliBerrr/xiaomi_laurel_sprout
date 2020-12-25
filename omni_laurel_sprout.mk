@@ -16,16 +16,33 @@
 # limitations under the License.
 #
 
+# Release name
+PRODUCT_RELEASE_NAME := laurel_sprout
+
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 
-# Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := laurel_sprout
-PRODUCT_NAME := omni_laurel_sprout
-PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Mi A3
-PRODUCT_MANUFACTURER := xiaomi
-PRODUCT_RELEASE_NAME := Xiaomi Mi A3
-
 # Inherit from laurel_sprout device
 $(call inherit-product, device/xiaomi/laurel_sprout/device.mk)
+
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
+PRODUCT_NAME := omni_$(PRODUCT_NAME)
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := Mi A3
+PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
+
+# Build Prop Overrides
+PRODUCT_BUILD_PROP_OVERRIDES += \
+     BUILD_FINGERPRINT := "Xiaomi/laurel_sprout/laurel_sprout:9/PKQ1.190416.001/V10.3.4.0.PFQMIXM:user/release-keys" \
+     BUILD_NUMBER := "V10.3.4.0.PFQMIXM" \
+     PRODUCT_NAME="laurel_sprout" \
+     TARGET_DEVICE="laurel_sprout"
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+    ro.build.date.utc \
+    ro.bootimage.build.date.utc
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2099-12-31
+
