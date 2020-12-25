@@ -140,6 +140,14 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_TOOLBOX := true
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 
+# A/B
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    vendor \
+    vbmeta \
+    dtbo
+    
 # Extra
 TW_HAPTICS_TSPDRV := true
 BOARD_SUPPRESS_SECURE_ERASE := true

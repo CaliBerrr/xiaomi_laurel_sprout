@@ -16,5 +16,6 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_laurel_sprout-userdebug
 add_lunch_combo omni_laurel_sprout-eng
+export ALLOW_MISSING_DEPENDENCIES=true
+export LC_ALL=C
