@@ -18,17 +18,37 @@
 
 LOCAL_PATH := device/xiaomi/laurel_sprout
 
-# A/B
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
 
+# define hardware platform
+PRODUCT_PLATFORM := trinket
+TARGET_USES_HARDWARE_QCOM_BOOTCTRL := true
+
+# A/B
+PRODUCT_PACKAGES += \
+    otapreopt_script \
+    cppreopts.sh \
+    update_engine \
+    update_verifier 
+    
+# Enable update engine sideloading by including the static version of the
+# boot_control HAL and its dependencies.
+PRODUCT_PACKAGES += \
+    bootctrl.$(PRODUCT_PLATFORM) \
+    update_engine_sideload
+    
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
+    
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.$(PRODUCT_PLATFORM) \
+    libgptutils \
+    libz \
+    libcutils
 
 # qcom standard decryption
 PRODUCT_PACKAGES += \
@@ -44,18 +64,4 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service
 
-PRODUCT_PACKAGES += \
-    bootctrl.trinket
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.trinket \
-    libgptutils \
-    libz \
-    libcutils
-
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
