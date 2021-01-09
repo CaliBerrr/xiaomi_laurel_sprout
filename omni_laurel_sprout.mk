@@ -27,7 +27,7 @@ $(call inherit-product, device/xiaomi/laurel_sprout/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
-PRODUCT_NAME := omni_$(PRODUCT_NAME)
+PRODUCT_NAME := omni_$(PRODUCT_DEVICE)
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Mi A3
 PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
