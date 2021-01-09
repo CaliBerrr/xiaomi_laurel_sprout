@@ -34,11 +34,11 @@ PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
 
 # Build Prop Overrides
 PRODUCT_BUILD_PROP_OVERRIDES += \
-     PRODUCT_NAME="laurel_sprout" \
-     TARGET_DEVICE="laurel_sprout"
+    PRODUCT_NAME="laurel_sprout" \
+    TARGET_DEVICE="laurel_sprout"
 
-     BUILD_FINGERPRINT := "Xiaomi/laurel_sprout/laurel_sprout:9/PKQ1.190416.001/V10.3.4.0.PFQMIXM:user/release-keys" \
-     BUILD_NUMBER := "V10.3.4.0.PFQMIXM" 
+BUILD_FINGERPRINT := "Xiaomi/laurel_sprout/laurel_sprout:9/PKQ1.190416.001/V10.3.4.0.PFQMIXM:user/release-keys"
+BUILD_NUMBER := "V10.3.4.0.PFQMIXM"
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     ro.build.date.utc \
