@@ -31,10 +31,11 @@ jobs:
             mka bootimage
       - run:
           name: Send To Telegram
+          no_output_timeout: 20m
           command: |
             cd ~/twrp/out/target/product/laurel_sprout
             ZIPNAME="TWRP-$(date +%d_%m_%Y_%H_%M)-laurel_sprout.zip"
-            sudo zip -r9 $ZIPNAME *.img
+            sudo zip -r9 $ZIPNAME boot.img
             curl -F chat_id=$CHAT_ID -F document=@$ZIPNAME -F parse_mode=markdown https://api.telegram.org/bot$BOT_TOKEN/sendDocument
             ZIP="TWRP-$(date +%d_%m_%Y_%H_%M)-laurel_sprout_vendor.zip"
             sudo zip -r9 $ZIP recovery/root/vendor 
